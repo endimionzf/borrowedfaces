@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    
+    <!-- SEO & Social Sharing -->
+    <title>FEȚE DE ÎMPRUMUT</title>
+    <meta name="description" content="An interactive video installation exploring identity and perspective.">
+    <meta property="og:title" content="FEȚE DE ÎMPRUMUT">
+    <meta property="og:description" content="An interactive video installation.">
+    <meta property="og:image" content="/icon.png">
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <!-- Performance: Preload Critical Assets -->
+    <link rel="preload" href="/fonts/Michroma-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/style.css">    
+
+</head>
+<body class="scanlines">
+
+    <!-- Ambient Audio -->
+    <audio id="ambient-audio" loop>
+        <source src="audio/ambient.mp4" type="audio/mp4">
+    </audio>
+
+    <div id="app">
+        <button id="about-btn" class="cyber-btn">despre proiect</button>
+        
+        <h1 class="app-title glitch-text" data-text="FEȚE DE ÎMPRUMUT">FEȚE DE ÎMPRUMUT</h1>
+        <div class="grid">
+            <!-- Ensure filenames match your server paths exactly -->
+            <!-- Example: First item is now a YouTube link -->
+            <div class="tile" onclick="playVideo('https://youtu.be/hDKI1XIhFCg')">
+                <video src="previews/ciocolata-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Chocolate (YT)</h2>
+            </div>
+            <div class="tile" onclick="playVideo('videos/2.Principii.mov')">
+                <video src="previews/principii-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Principii</h2>
+            </div>       
+            <div class="tile" onclick="playVideo('videos/3.Cel mai bun prieten.mov')">
+                <video src="previews/celmaibunprieten-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Cel mai bun prieten</h2>
+            </div>
+            <div class="tile" onclick="playVideo('videos/10.Menelau.mov')">
+                <video src="previews/menelau-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Menelau</h2>
+            </div>
+            <div class="tile" onclick="playVideo('videos/4.Asteptari Clare.mov')">
+                <video src="previews/asteptariclare-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Așteptări clare</h2>
+            </div>
+            <div class="tile" onclick="playVideo('videos/7.Ai mei.mov')">
+                <video src="previews/aimei-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Ai mei</h2>
+            </div>
+            <div class="tile" onclick="playVideo('videos/6.Comedy.mov')">
+                <video src="previews/comedy-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Comedy</h2>
+            </div>
+            <div class="tile" onclick="playVideo('videos/5.Oglinda.mov')">
+                <video src="previews/oglinda-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Oglinda</h2>
+            </div>
+            <div class="tile" onclick="playVideo('videos/8.Identitate.mov')">
+                <video src="previews/identitate-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Identitate</h2>
+            </div>
+            <div class="tile" onclick="playVideo('videos/1.Pat de frunze.mov')">
+                <video src="previews/patdefrunze-preview.mp4" autoplay muted loop playsinline></video>
+                <h2>Pat de frunze</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Player Overlay -->
+    <div id="video-overlay">
+        <div class="player-container">
+            <video id="main-player" playsinline></video>
+        </div>
+        <div class="player-controls">
+            <button class="cyber-btn" id="mute-btn" onclick="toggleMute()">MUTE</button>
+            <button class="cyber-btn" id="close-btn" onclick="closeVideo()">ÎNCHIDE</button>
+        </div>
+    </div>
+
+    <!-- About Overlay -->
+    <div id="about-overlay">
+        <div class="about-content">
+            <h2>Fețe de împrumut</h2>
+            <p>
+                Lucrarea “Fețe de împrumut” înfățișează un cinema fragil al memoriei și imaginează ce se întâmplă atunci când, în încercarea de a se regăsi, o societate cu arhive gestionate precar nu descoperă altceva decât chipuri împrumutate, care vorbesc dintr-un timp străin, suspendat.
+            </p>
+            <p>
+                Este redată ficțional sub forma unui terminal digital de acces al unei arhive de memorii, amintiri și materiale înregistrate de-a lungul timpului. Preocuparea relaxată pentru gestionarea arhivei, update-urile din an în paști și nepăsarea generală a administratorilor au făcut ca entitatea de inteligență artificială desemnată cu indexarea și redarea materialelor arhivei să halucineze, asociind liber materiale și amintiri înregistrate la distanțe mari de timp. Unde nu găsește o față pentru voce, îi propune utilizatorului o față de împrumut.
+            </p>
+            <em>
+                *Pentru crearea acestor micro-narațiuni ne-am bazat pe interviuri realizate în perioada aprilie – mai 2025, cu persoane care au răspuns apelului nostru. Le mulțumim tuturor celor care și-au arătat disponibilitatea de a ne împărtăși experiența lor. Fără contribuția lor, această lucrare nu ar fi fost posibilă.
+            </em>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="cyber-btn" id="about-close-btn" style="border-color: var(--neon-magenta); color: var(--neon-magenta);">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Dialog -->
+    <div id="confirmation-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 5000;">
+        <div style="background: rgba(13, 2, 33, 0.9); padding: 40px; text-align: center; border: 2px solid var(--neon-cyan); box-shadow: 0 0 30px var(--neon-cyan); clip-path: polygon(0 20px, 20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px));">
+            <p style="font-size: 1.5rem; margin-bottom: 30px;">Începi această transmisiune?</p>
+            <div style="display: flex; justify-content: center;">
+                <button id="confirm-yes" class="cyber-btn" style="margin: 0 10px; border-color: var(--neon-green); color: var(--neon-green);">DA</button>
+                <button id="confirm-no" class="cyber-btn" style="margin: 0 10px; border-color: var(--neon-red); color: var(--neon-red);">NU</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+    </body>
+</html>
