@@ -1,3 +1,50 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    const loadingBar = document.getElementById('loading-bar');
+    const loadingStatus = document.getElementById('loading-status');
+    
+    // Select all preview videos in the grid
+    const videos = document.querySelectorAll('.tile video');
+    let videosLoaded = 0;
+    const totalVideos = videos.length;
+
+    // Function to update progress
+    function checkProgress() {
+        videosLoaded++;
+        const percent = Math.floor((videosLoaded / totalVideos) * 100);
+        
+        // Update UI
+        loadingBar.style.width = percent + "%";
+        loadingStatus.innerText = `> LOADING MEMORY FRAGMENTS... ${percent}%`;
+
+        // If all loaded, hide screen
+        if (videosLoaded >= totalVideos) {
+            setTimeout(() => {
+                loadingStatus.innerText = "> SYSTEM READY. INITIALIZING...";
+                setTimeout(() => {
+                    loadingScreen.classList.add('fade-out');
+                    // Optional: Auto-start ambient audio here if desired (and browser allows)
+                }, 800);
+            }, 500);
+        }
+    }
+
+    if (totalVideos === 0) {
+        // Fallback if no videos found
+        loadingScreen.classList.add('fade-out');
+    } else {
+        videos.forEach(video => {
+            // Check if video is already ready (cached)
+            if (video.readyState >= 3) { // HAVE_FUTURE_DATA
+                checkProgress();
+            } else {
+                // Otherwise wait for it to load enough data
+                video.addEventListener('loadeddata', checkProgress, { once: true });
+                video.addEventListener('error', checkProgress, { once: true }); // Count errors too so it doesn't hang
+            }
+        });
+    }
+});
 const overlay = document.getElementById('video-overlay');
         const mainPlayer = document.getElementById('main-player');
         const app = document.getElementById('app');
