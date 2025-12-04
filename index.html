@@ -38,6 +38,16 @@
         </div>
     </div>
 
+    <!-- NEW UI SYSTEM HEADER -->
+    <div id="ui-header">
+        <div class="ui-left">
+            <span class="blink">●</span> ARCHIVE_TERMINAL_V.2.0
+        </div>
+        <div class="ui-right" id="clock-display">
+            00:00:00
+        </div>
+    </div>
+
     <!-- SYSTEM LOG (The "Third Entity" Internal Monologue) -->
     <div id="system-log">
         > SYSTEM_READY
@@ -54,11 +64,10 @@
         
         <div class="grid">
             <!-- Ensure filenames match your server paths exactly -->
-            <div class="tile" onclick="playVideo('https://youtu.be/hDKI1XIhFCg')">
+            <div class="tile" onclick="playVideo('videos/9.Ciocolată.mp4')">
                 <video src="previews/ciocolata-preview.mp4" autoplay muted loop playsinline></video>
-                <h2>Chocolate (YT)</h2>
+                <h2>Ciocolată</h2>
             </div>
-            <!-- Updated extensions from .mov to .mp4 -->
             <div class="tile" onclick="playVideo('videos/2.Principii.mp4')">
                 <video src="previews/principii-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Principii</h2>
@@ -112,7 +121,6 @@
             <div id="video-loader" style="display: none;">BUFFERING...</div>
         </div>
         <div class="player-controls">
-            <!-- Mute button removed -->
             <button class="cyber-btn" id="close-btn" onclick="closeVideo()">ÎNCHIDE</button>
         </div>
     </div>
@@ -120,13 +128,23 @@
     <!-- About Overlay -->
     <div id="about-overlay">
         <div class="about-content">
-            <h2>Fețe de împrumut</h2>
+            <h2>FEȚE DE ÎMPRUMUT</h2>
             <p>
-                Lucrarea “Fețe de împrumut” înfățișează un cinema fragil al memoriei și imaginează ce se întâmplă atunci când, în încercarea de a se regăsi, o societate cu arhive gestionate precar nu descoperă altceva decât chipuri împrumutate, care vorbesc dintr-un timp străin, suspendat.
+                Lucrarea “Fețe de împrumut” înfățișează un cinema fragil al memoriei și imaginează ce se întâmplă atunci când (în încercarea de a se regăsi) o societate cu arhive gestionate precar nu descoperă altceva decât chipuri împrumutate, care vorbesc dintr-un timp străin, suspendat.
             </p>
             <p>
-                Este redată ficțional sub forma unui terminal digital de acces al unei arhive de memorii, amintiri și materiale înregistrate de-a lungul timpului. Preocuparea relaxată pentru gestionarea arhivei, update-urile din an în paști și nepăsarea generală a administratorilor au făcut ca entitatea de inteligență artificială desemnată cu indexarea și redarea materialelor arhivei să halucineze, asociind liber materiale și amintiri înregistrate la distanțe mari de timp. Unde nu găsește o față pentru voce, îi propune utilizatorului o față de împrumut.
+                Este redată ficțional sub forma unui terminal digital de acces al unei arhive de memorii, amintiri și materiale înregistrate de-a lungul timpului. Preocuparea relaxată pentru gestionarea arhivei, update-urile din an în paști și nepăsarea generală a administratorilor au făcut ca entitatea de inteligență artificială desemnată cu indexarea și redarea materialelor arhivei să halucineze, asociind liber materiale și amintiri înregistrate la distanțe mari de timp. Unde nu găsește o față pentru voce, îi propune utilizatorului o față de împrumut preluată din arhive de ziare sau reviste românești.
             </p>
+
+            <p>Echipa artistică</p>
+<p>producător: Asociația VAR</p>
+<p>concept, design, prelucrare AI: Alexandru Claudiu Maxim</p>
+<p>regie: Alice Oșlobanu</p>
+<p>structura dramatică: Oana Hodade & Daniel Oltean</p>
+<p>actori voci și expresii faciale:  Otilia Panainte, Filip Popescu, Vero Nica și Lucian Pavel</p>
+<p>sound design: Ana Teodora Popa, Maria Bianca</p>
+<p>interviuri: Magda Cernea</p>
+            
             <em>
                 *Pentru crearea acestor micro-narațiuni ne-am bazat pe interviuri realizate în perioada aprilie – mai 2025, cu persoane care au răspuns apelului nostru. Le mulțumim tuturor celor care și-au arătat disponibilitatea de a ne împărtăși experiența lor. Fără contribuția lor, această lucrare nu ar fi fost posibilă.
             </em>

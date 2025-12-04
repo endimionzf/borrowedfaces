@@ -38,6 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // --- NEW: UI Clock ---
+    function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', { 
+            hour12: false, 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit'
+        });
+        const clockEl = document.getElementById('clock-display');
+        if (clockEl) clockEl.innerText = timeString;
+    }
+    setInterval(updateClock, 1000);
+    updateClock(); // Run immediately
+
     // --- 2. System Log (The Third Entity) ---
     const logElement = document.getElementById('system-log');
     const logMessages = [
@@ -72,8 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const app = document.getElementById('app');
     const ambientAudio = document.getElementById('ambient-audio');
-    
-    // Mute button reference removed
     
     const confirmationOverlay = document.getElementById('confirmation-overlay');
     const confirmYesBtn = document.getElementById('confirm-yes');
@@ -174,7 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         mainPlayer.play();
         mainPlayer.muted = false; // Videos play with sound by default
-        // Removed muteBtn text update
     }
 
     if (mainPlayer) {
@@ -209,8 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
             fadeAudio(ambientAudio, 0.5, 1000);
         }
     }
-
-    // Removed toggleMute function
 
     function fadeAudio(audio, targetVolume, duration) {
         const startVolume = audio.volume;
