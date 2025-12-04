@@ -9,23 +9,39 @@
     <meta name="description" content="An interactive video installation exploring identity and perspective.">
     <meta property="og:title" content="FEȚE DE ÎMPRUMUT">
     <meta property="og:description" content="An interactive video installation.">
-    <meta property="og:image" content="/icon.png">
+    <meta property="og:image" content="icon.png">
 
     <!-- Web App Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
 
-     <!-- Performance: Preload Critical Assets -->
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+    <!-- Performance: Preload Critical Assets -->
+    <link rel="preload" href="fonts/Michroma-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/style.css">    
-
 </head>
 <body class="scanlines">
+
+    <!-- LOADING SCREEN / BIOS BOOT -->
+    <div id="loading-screen">
+        <div class="terminal-loader">
+            <div class="glitch-text" data-text="INITIALIZING ARCHIVE...">INITIALIZING ARCHIVE...</div>
+            <div id="loading-status" style="margin-top: 10px; color: var(--neon-cyan); font-size: 0.8rem;">
+                > DETECTING MEMORY FRAGMENTS... 0%
+            </div>
+            <div class="loading-bar-container">
+                <div id="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SYSTEM LOG (The "Third Entity" Internal Monologue) -->
+    <div id="system-log">
+        > SYSTEM_READY
+    </div>
 
     <!-- Ambient Audio -->
     <audio id="ambient-audio" loop>
@@ -33,45 +49,45 @@
     </audio>
 
     <div id="app">
-        <button id="about-btn" class="cyber-btn">despre proiect</button>
         
         <h1 class="app-title glitch-text" data-text="FEȚE DE ÎMPRUMUT">FEȚE DE ÎMPRUMUT</h1>
+        
         <div class="grid">
             <!-- Ensure filenames match your server paths exactly -->
-            <!-- Example: First item is now a YouTube link -->
             <div class="tile" onclick="playVideo('https://youtu.be/hDKI1XIhFCg')">
                 <video src="previews/ciocolata-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Chocolate (YT)</h2>
             </div>
+            <!-- Updated extensions from .mov to .mp4 -->
             <div class="tile" onclick="playVideo('videos/2.Principii.mp4')">
                 <video src="previews/principii-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Principii</h2>
             </div>       
-            <div class="tile" onclick="playVideo('videos/3.Cel mai bun prieten.mov')">
+            <div class="tile" onclick="playVideo('videos/3.Cel mai bun prieten.mp4')">
                 <video src="previews/celmaibunprieten-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Cel mai bun prieten</h2>
             </div>
-            <div class="tile" onclick="playVideo('videos/10.Menelau.mov')">
+            <div class="tile" onclick="playVideo('videos/10.Menelau.mp4')">
                 <video src="previews/menelau-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Menelau</h2>
             </div>
-            <div class="tile" onclick="playVideo('videos/4.Asteptari Clare.mov')">
+            <div class="tile" onclick="playVideo('videos/4.Asteptari Clare.mp4')">
                 <video src="previews/asteptariclare-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Așteptări clare</h2>
             </div>
-            <div class="tile" onclick="playVideo('videos/7.Ai mei.mov')">
+            <div class="tile" onclick="playVideo('videos/7.Ai mei.mp4')">
                 <video src="previews/aimei-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Ai mei</h2>
             </div>
-            <div class="tile" onclick="playVideo('videos/6.Comedy.mov')">
+            <div class="tile" onclick="playVideo('videos/6.Comedy.mp4')">
                 <video src="previews/comedy-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Comedy</h2>
             </div>
-            <div class="tile" onclick="playVideo('videos/5.Oglinda.mov')">
+            <div class="tile" onclick="playVideo('videos/5.Oglinda.mp4')">
                 <video src="previews/oglinda-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Oglinda</h2>
             </div>
-            <div class="tile" onclick="playVideo('videos/8.Identitate.mov')">
+            <div class="tile" onclick="playVideo('videos/8.Identitate.mp4')">
                 <video src="previews/identitate-preview.mp4" autoplay muted loop playsinline></video>
                 <h2>Identitate</h2>
             </div>
@@ -80,15 +96,23 @@
                 <h2>Pat de frunze</h2>
             </div>
         </div>
+
+        <!-- Bottom Controls (Moved Below Grid) -->
+        <div class="bottom-controls">
+            <button id="random-btn" class="cyber-btn">EXTRAGE MEMORIE ALEATORIE</button>
+            <button id="about-btn" class="cyber-btn">despre proiect</button>
+        </div>
     </div>
 
     <!-- Video Player Overlay -->
     <div id="video-overlay">
         <div class="player-container">
             <video id="main-player" playsinline></video>
+            <!-- Video Loader Indicator -->
+            <div id="video-loader" style="display: none;">BUFFERING...</div>
         </div>
         <div class="player-controls">
-            <button class="cyber-btn" id="mute-btn" onclick="toggleMute()">MUTE</button>
+            <!-- Mute button removed -->
             <button class="cyber-btn" id="close-btn" onclick="closeVideo()">ÎNCHIDE</button>
         </div>
     </div>
@@ -123,5 +147,5 @@
         </div>
     </div>
     <script src="js/app.js"></script>
-    </body>
+</body>
 </html>
